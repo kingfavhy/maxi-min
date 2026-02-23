@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minimum & Maximum Finder</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f6f8;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    width: 320px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.result {
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Minimum & Maximum Finder</h2>
+
+    <input 
+        type="text" 
+        id="numbers" 
+        placeholder="Enter numbers"
+    >
+
+    <button onclick="findMinMax()">Find Values</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+function findMinMax() {
+    const input = document.getElementById("numbers").value.trim();
+
+    if (input === "") {
+        document.getElementById("output").innerText = "Please enter some numbers!";
+        return;
+    }
+
+    const numbers = input.split(/\s+/).map(Number);
+
+    if (numbers.some(isNaN)) {
+        document.getElementById("output").innerText = "Only enter valid numbers!";
+        return;
+    }
+
+    let min = numbers[0];
+    let max = numbers[0];
+
+    for (let num of numbers) {
+        if (num < min) min = num;
+        if (num > max) max = num;
+    }
+
+    document.getElementById("output").innerText = 
+        `Minimum: ${min} | Maximum: ${max}`;
+}
+</script>
+
+</body>
+</html>
